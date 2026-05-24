@@ -4,14 +4,12 @@ import { Header } from './components/Header';
 import { JoystickPanel } from './components/JoystickPanel';
 import { MotorPanel } from './components/MotorPanel';
 import { ConfigPanel } from './components/ConfigPanel';
-import { DroneView3D } from './components/DroneView3D';
 
-type Panel = 'joysticks' | 'motors' | 'config' | '3d';
+type Panel = 'joysticks' | 'motors' | 'config';
 
 const TABS: { id: Panel; label: string }[] = [
   { id: 'joysticks', label: 'JOYSTICKS' },
   { id: 'motors',    label: 'MOTORES'   },
-  { id: '3d',        label: '3D'        },
   { id: 'config',    label: 'CONFIG'    },
 ];
 
@@ -72,19 +70,6 @@ export default function App() {
           onApply={drone.applyConfig}
           onReset={drone.resetConfig}
           onFetch={drone.fetchConfig}
-        />
-      )}
-
-      {panel === '3d' && (
-        <DroneView3D
-          roll={drone.roll}
-          pitch={drone.pitch}
-          imuOk={drone.imuOk}
-          motors={drone.motors}
-          signRoll={drone.config?.signRoll ?? 1}
-          signPitch={drone.config?.signPitch ?? 1}
-          armed={drone.armed}
-          applyConfig={drone.applyConfig}
         />
       )}
 
